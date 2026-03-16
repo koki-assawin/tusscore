@@ -573,22 +573,69 @@
       <button onclick="closePrivacyModal()" class="text-pink-400 hover:text-pink-600 text-3xl leading-none">×</button>
      </div>
      <div class="space-y-6 text-pink-700">
-      <div class="bg-pink-50 rounded-xl p-4"><p class="text-sm leading-relaxed">โรงเรียนเตรียมอุดมศึกษาภาคใต้ ให้ความสำคัญกับความเป็นส่วนตัวและการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง และผู้ใช้งานระบบค้นหาผลสอบออนไลน์ทุกท่าน</p></div>
+      <div class="bg-pink-50 rounded-xl p-4">
+       <p class="text-sm leading-relaxed">โรงเรียนเตรียมอุดมศึกษาภาคใต้ ให้ความสำคัญกับความเป็นส่วนตัวและการคุ้มครองข้อมูลส่วนบุคคลของนักเรียน ผู้ปกครอง และผู้ใช้งานระบบค้นหาผลสอบออนไลน์ทุกท่าน นโยบายนี้อธิบายการเก็บรวบรวม ใช้ และคุ้มครองข้อมูลในระบบนี้</p>
+      </div>
       <div>
        <h3 class="font-semibold text-lg text-pink-800 mb-3 flex items-center gap-2"><span>📋</span> 1. ข้อมูลที่เราเก็บรวบรวม</h3>
-       <div class="pl-8 space-y-2 text-sm">
-        <p><strong>ข้อมูลนักเรียน:</strong></p>
-        <ul class="list-disc pl-5 space-y-1"><li>เลขประจำตัวสอบ</li><li>ชื่อ - นามสกุล</li><li>โรงเรียน</li><li>แผนการเรียน</li><li>ผลคะแนนสอบแต่ละวิชา</li><li>อันดับผลการสอบ</li></ul>
+       <div class="pl-4 space-y-2 text-sm">
+        <p class="font-medium text-pink-700">ข้อมูลนักเรียนที่เก็บในระบบ:</p>
+        <ul class="list-disc pl-5 space-y-1">
+         <li>เลขประจำตัวสอบ</li>
+         <li>เลขบัตรประชาชน</li>
+         <li>ชื่อ - นามสกุล</li>
+         <li>โรงเรียน</li>
+         <li>แผนการเรียน</li>
+         <li>ผลคะแนนสอบแต่ละวิชา (คณิตศาสตร์ ภาษาไทย ภาษาอังกฤษ วิทยาศาสตร์ สังคมศึกษา)</li>
+         <li>คะแนนรวมและอันดับผลการสอบ</li>
+        </ul>
+        <p class="text-pink-500 mt-2">ระบบไม่เก็บข้อมูลการใช้งาน เช่น IP address หรือประวัติการค้นหา</p>
+       </div>
+      </div>
+      <div>
+       <h3 class="font-semibold text-lg text-pink-800 mb-3 flex items-center gap-2"><span>🎯</span> 2. วัตถุประสงค์การใช้ข้อมูล</h3>
+       <div class="pl-4 text-sm space-y-2">
+        <ul class="list-disc pl-5 space-y-1">
+         <li>เพื่อให้นักเรียนและผู้ปกครองตรวจสอบผลคะแนนสอบได้ด้วยตนเอง</li>
+         <li>เพื่อประมวลผลและจัดอันดับคะแนนสอบโดยโรงเรียน</li>
+         <li>ไม่นำข้อมูลไปใช้เพื่อวัตถุประสงค์อื่นนอกเหนือจากที่ระบุ</li>
+        </ul>
        </div>
       </div>
       <div>
        <h3 class="font-semibold text-lg text-pink-800 mb-3 flex items-center gap-2"><span>🔐</span> 3. การรักษาความปลอดภัยของข้อมูล</h3>
-       <div class="pl-8 text-sm space-y-2">
-        <ul class="list-disc pl-5 space-y-1"><li>ข้อมูลทั้งหมดเก็บใน Google Sheets ที่มีมาตรฐานความปลอดภัยสูง</li><li>การเข้าถึงระบบจัดการต้องใช้ชื่อผู้ใช้และรหัสผ่าน</li><li>ข้อมูลผลสอบสามารถค้นหาได้เฉพาะผู้ที่มีเลขประจำตัวสอบเท่านั้น</li></ul>
+       <div class="pl-4 text-sm space-y-2">
+        <ul class="list-disc pl-5 space-y-1">
+         <li>ข้อมูลทั้งหมดเก็บใน Google Sheets ผ่าน Google Apps Script ซึ่งอยู่บน Google Cloud ที่มีมาตรฐานความปลอดภัยระดับสากล</li>
+         <li>การจัดการข้อมูล (เพิ่ม แก้ไข ลบ) ต้องผ่านการเข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่านเท่านั้น</li>
+         <li>ผู้ใช้ทั่วไปสามารถค้นหาข้อมูลได้เฉพาะผู้ที่ทราบเลขประจำตัวสอบหรือเลขบัตรประชาชนของตนเองเท่านั้น</li>
+         <li>ไม่มีการเปิดเผยข้อมูลนักเรียนต่อบุคคลภายนอกหรือองค์กรอื่น</li>
+        </ul>
+       </div>
+      </div>
+      <div>
+       <h3 class="font-semibold text-lg text-pink-800 mb-3 flex items-center gap-2"><span>👤</span> 4. สิทธิ์ของเจ้าของข้อมูล</h3>
+       <div class="pl-4 text-sm space-y-2">
+        <p>นักเรียนและผู้ปกครองมีสิทธิ์ดังนี้:</p>
+        <ul class="list-disc pl-5 space-y-1">
+         <li>ขอตรวจสอบข้อมูลของตนเองที่เก็บในระบบ</li>
+         <li>ขอแก้ไขข้อมูลที่ไม่ถูกต้อง</li>
+         <li>ขอลบข้อมูลออกจากระบบ</li>
+        </ul>
+        <p class="text-pink-500 mt-1">กรุณาติดต่อผู้ดูแลระบบเพื่อดำเนินการ</p>
+       </div>
+      </div>
+      <div>
+       <h3 class="font-semibold text-lg text-pink-800 mb-3 flex items-center gap-2"><span>📬</span> 5. ติดต่อผู้ดูแลระบบ</h3>
+       <div class="pl-4 text-sm space-y-1">
+        <p>หากมีข้อสงสัยหรือต้องการใช้สิทธิ์เกี่ยวกับข้อมูลส่วนบุคคล กรุณาติดต่อ:</p>
+        <p><strong>ครูอัศวิน จุลมูล</strong> — ผู้ดูแลระบบ</p>
+        <p>โรงเรียนเตรียมอุดมศึกษาภาคใต้</p>
+        <p>อีเมล: <span class="text-pink-600">aitus@triamudomsouth.ac.th</span></p>
        </div>
       </div>
       <div class="border-t border-pink-200 pt-4">
-       <p class="text-xs text-pink-500 text-center">นโยบายนี้มีผลบังคับใช้ตั้งแต่ มกราคม 2569<br>ปรับปรุงล่าสุด: มกราคม 2569</p>
+       <p class="text-xs text-pink-500 text-center">นโยบายนี้มีผลบังคับใช้ตั้งแต่ มกราคม 2569<br>ปรับปรุงล่าสุด: มีนาคม 2569</p>
       </div>
      </div>
      <div class="mt-6 text-center"><button onclick="closePrivacyModal()" class="btn-pink text-white px-8 py-3 rounded-xl font-medium">ปิด</button></div>
