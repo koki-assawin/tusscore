@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
   <style>
@@ -591,7 +592,7 @@
     const SCRIPT_URL_KEY = 'tusscore_script_url';
 
     function getScriptUrl() {
-      return localStorage.getItem(SCRIPT_URL_KEY) || '';
+      return localStorage.getItem(SCRIPT_URL_KEY) || (typeof TUSSCORE_CONFIG !== 'undefined' ? TUSSCORE_CONFIG.scriptUrl : '') || '';
     }
 
     function setScriptUrl(url) {
@@ -1496,8 +1497,7 @@
           showToast('ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ', false);
         }
       } else {
-        // ยังไม่ได้ตั้งค่า URL — แสดง setup modal อัตโนมัติ
-        showSetupModal();
+        // ไม่มี URL — ไม่แสดง modal อัตโนมัติ (Admin ตั้งค่าได้ที่แท็บ 🔗 เชื่อมต่อ)
       }
     }
 
