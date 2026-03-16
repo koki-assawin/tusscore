@@ -262,7 +262,7 @@
        <div><label class="block text-sm font-medium text-pink-600 mb-2">🌍 ภาษาอังกฤษ</label><input type="number" id="score-english" class="w-full input-pink rounded-xl px-4 py-3" placeholder="0-100" min="0" max="100"></div>
        <div><label class="block text-sm font-medium text-pink-600 mb-2">🔬 วิทยาศาสตร์</label><input type="number" id="score-science" class="w-full input-pink rounded-xl px-4 py-3" placeholder="0-100" min="0" max="100"></div>
        <div><label class="block text-sm font-medium text-pink-600 mb-2">🏛️ สังคมศึกษา</label><input type="number" id="score-social" class="w-full input-pink rounded-xl px-4 py-3" placeholder="0-100" min="0" max="100"></div>
-       <div><label class="block text-sm font-medium text-pink-600 mb-2">🥇 อันดับในแผน</label><input type="number" id="score-rank" class="w-full input-pink rounded-xl px-4 py-3" placeholder="อันดับในแผน" min="1"></div>
+       <div><label class="block text-sm font-medium text-pink-600 mb-2">🥇 อันดับในแผน</label><input type="text" id="score-rank" class="w-full input-pink rounded-xl px-4 py-3" placeholder="เช่น 1 หรือ ความสามารถพิเศษ"></div>
       </div>
       <div class="flex gap-3 mt-4 flex-wrap">
        <button onclick="saveScore()" class="btn-pink text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2"><span>💾</span> บันทึกผลสอบ</button>
@@ -1202,7 +1202,7 @@
       const english = parseFloat(document.getElementById('score-english').value) || 0;
       const science = parseFloat(document.getElementById('score-science').value) || 0;
       const social = parseFloat(document.getElementById('score-social').value) || 0;
-      const rank = parseInt(document.getElementById('score-rank').value) || 0;
+      const rank = document.getElementById('score-rank').value.trim();
 
       if (!examId || !examNumber || !name) {
         showToast('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', false);
@@ -1455,7 +1455,7 @@
             math_score: math, thai_score: thai, english_score: english,
             science_score: science, social_score: social,
             total_score: parseFloat(cols[10]) || 0,
-            rank: parseInt(cols[11]) || 0,
+            rank: cols[11] || '',
             created_at: new Date().toISOString(),
             config_type: '', search_field: '', show_school: '', show_plan: '', show_rank: '', show_avg: ''
           });
