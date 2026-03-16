@@ -280,7 +280,7 @@
        <table class="w-full text-sm">
         <thead>
          <tr class="bg-pink-50 text-pink-700">
-          <th class="px-4 py-3 text-left rounded-l-xl">เลขประจำตัว</th>
+          <th class="px-4 py-3 text-left rounded-l-xl">เลขประจำตัวสอบ</th>
           <th class="px-4 py-3 text-left">ชื่อ - สกุล</th>
           <th class="px-4 py-3 text-left hidden md:table-cell">แผนการเรียน</th>
           <th class="px-4 py-3 text-center">รวม</th>
@@ -389,7 +389,7 @@
        <table class="w-full text-sm">
         <thead>
          <tr class="bg-pink-50 text-pink-700">
-          <th class="px-3 py-2 text-left">เลขประจำตัว</th>
+          <th class="px-3 py-2 text-left">เลขประจำตัวสอบ</th>
           <th class="px-3 py-2 text-left">ชื่อ-สกุล</th>
           <th class="px-3 py-2 text-left">โรงเรียน</th>
           <th class="px-3 py-2 text-left">แผนการเรียน</th>
@@ -404,6 +404,67 @@
        <button onclick="cancelImport()" class="px-6 py-3 rounded-xl font-medium border-2 border-pink-200 text-pink-600 hover:bg-pink-50 transition-all">ยกเลิก</button>
       </div>
      </div>
+    <!-- Tips: Direct Google Sheets Paste -->
+    <div class="glass-card rounded-2xl pink-shadow p-6">
+     <div class="flex items-center gap-3 mb-4">
+      <div class="icon-box bg-yellow-100 text-yellow-500">⚡</div>
+      <div>
+       <h2 class="text-xl font-semibold text-pink-800">เคล็ดลับ: วางข้อมูลตรงใน Google Sheets (เร็วกว่ามาก)</h2>
+       <p class="text-sm text-pink-400">เหมาะสำหรับข้อมูลหลักพันคน ไม่ต้องรอระบบอัพโหลดทีละรายการ</p>
+      </div>
+     </div>
+     <div class="space-y-4">
+      <div class="bg-pink-50 rounded-xl p-4">
+       <p class="font-semibold text-pink-700 mb-2">① เตรียมข้อมูลใน Excel/Sheets</p>
+       <p class="text-sm text-pink-600 mb-2">จัดเรียง column ให้ตรงตามลำดับนี้ (ซ้ายไปขวา):</p>
+       <div class="overflow-x-auto">
+        <table class="text-xs w-full border-collapse">
+         <thead>
+          <tr class="bg-pink-200 text-pink-900">
+           <th class="px-2 py-1 border border-pink-300 text-left">A (__backendId)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">E (exam_id)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">F (exam_name)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">G (เลขประจำตัวสอบ)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">H (เลขบัตรประชาชน)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">I (ชื่อ-สกุล)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">J (โรงเรียน)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">K (แผนการเรียน)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">L (คณิต)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">M (ไทย)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">N (อังกฤษ)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">O (วิทย์)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">P (สังคม)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">Q (รวม)</th>
+           <th class="px-2 py-1 border border-pink-300 text-left">R (อันดับ)</th>
+          </tr>
+         </thead>
+        </table>
+       </div>
+       <p class="text-xs text-pink-400 mt-2">Column B, C, D (ข้อมูล user) และ S–X (config) เว้นว่างได้</p>
+      </div>
+      <div class="bg-pink-50 rounded-xl p-4">
+       <p class="font-semibold text-pink-700 mb-2">② สร้าง __backendId ด้วยสูตรอัตโนมัติ</p>
+       <p class="text-sm text-pink-600 mb-2">ใส่สูตรในคอลัมน์ A แถวแรกของข้อมูล แล้ว fill down ลงทั้งคอลัมน์:</p>
+       <code class="text-sm text-pink-700 bg-white px-3 py-2 rounded-lg block">=&quot;sc&quot;&amp;TEXT(ROW(),&quot;000&quot;)</code>
+       <p class="text-xs text-pink-400 mt-1">จะได้ sc002, sc003, sc004 ... ไม่ซ้ำกันโดยอัตโนมัติ</p>
+      </div>
+      <div class="bg-pink-50 rounded-xl p-4">
+       <p class="font-semibold text-pink-700 mb-2">③ หา exam_id ของรายการสอบ</p>
+       <p class="text-sm text-pink-600">เปิด Google Sheet → Sheet <strong>TussScore_Data</strong> → หาแถวที่มีชื่อรายการสอบ → คัดลอกค่าในคอลัมน์ E (<strong>exam_id</strong>) มาใช้</p>
+      </div>
+      <div class="bg-pink-50 rounded-xl p-4">
+       <p class="font-semibold text-pink-700 mb-2">④ Paste ข้อมูลลงใน Google Sheets</p>
+       <p class="text-sm text-pink-600">เปิด Google Sheet → Sheet <strong>TussScore_Data</strong> → คลิกแถวว่างต่อจากข้อมูลเดิม → Paste ได้เลย</p>
+       <div class="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-2">
+        <p class="text-xs text-yellow-700">⚠️ อย่าแก้ไข Row 1 (header) และอย่าให้ __backendId ซ้ำกับแถวที่มีอยู่แล้ว</p>
+       </div>
+      </div>
+      <div class="bg-green-50 rounded-xl p-4">
+       <p class="font-semibold text-green-700 mb-1">✅ เสร็จแล้ว!</p>
+       <p class="text-sm text-green-600">รีเฟรชหน้าเว็บ (F5) — ข้อมูลจะแสดงทันที ไม่ต้องรออัพโหลดทีละรายการ</p>
+      </div>
+     </div>
+    </div>
     </div>
 
     <!-- Connect Section -->
