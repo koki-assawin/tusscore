@@ -67,6 +67,10 @@
      <select id="exam-select" class="w-full input-pink rounded-xl px-4 py-3 text-gray-700 bg-white">
       <option value="">-- กรุณาเลือกรายการสอบ --</option>
      </select>
+     <div id="init-loading" class="hidden mt-3 flex items-center gap-2 text-pink-400 text-sm">
+      <svg class="animate-spin h-4 w-4 text-pink-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+      <span>กำลังโหลดข้อมูล...</span>
+     </div>
     </div>
     <!-- Search Form -->
     <div class="glass-card rounded-2xl pink-shadow p-6 mb-6 fade-in" style="animation-delay:0.1s">
@@ -1551,14 +1555,20 @@
       });
 
       if (scriptUrl) {
-        showLoading();
-        const initResult = await window.dataSdk.init(dataHandler);
-        hideLoading();
-        if (!initResult.isOk) {
-          showToast('ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ', false);
+        const initLoader = document.getElementById('init-loading');
+        if (initLoader) initLoader.classList.remove('hidden');
+        try {
+          const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000));
+          const initResult = await Promise.race([window.dataSdk.init(dataHandler), timeout]);
+          if (initResult && !initResult.isOk) {
+            showToast('ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ', false);
+          }
+        } catch (e) {
+          if (e.message === 'timeout') showToast('โหลดข้อมูลช้า กรุณารีเฟรชหน้าใหม่', false);
+          else showToast('ไม่สามารถโหลดข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่อ', false);
+        } finally {
+          if (initLoader) initLoader.classList.add('hidden');
         }
-      } else {
-        // ไม่มี URL — ไม่แสดง modal อัตโนมัติ (Admin ตั้งค่าได้ที่แท็บ 🔗 เชื่อมต่อ)
       }
     }
 
